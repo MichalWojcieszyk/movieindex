@@ -1,0 +1,20 @@
+<nav>
+		<div class="menu">
+			<ul>
+				<li><%= nav_link_to "Home", "home", movies_path, "current_page" %></li>
+				<li><%= nav_link_to "Contact us", "contact_us", contact_us_path, "current_page" %></li>
+				<li><%= link_to "Movies", movies_path %>
+				</li>	
+				<% if user_signed_in? %>
+ 					<li>
+  					<%= link_to 'Logout', destroy_user_session_path, :method => :delete %>        
+  					</li>
+				<% else %>
+  					<li>
+  					<%= link_to 'Login', new_user_session_path  %>  
+  					</li>
+				<% end %>
+			</ul>
+		</div>
+	</nav>
+	

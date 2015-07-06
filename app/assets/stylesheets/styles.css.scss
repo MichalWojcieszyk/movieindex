@@ -1,0 +1,135 @@
+body {
+    background-color: #b0c4de;
+}
+a {
+color:#9F3B19;
+}
+
+a:hover {
+color: #333;
+}
+	
+p {
+margin-bottom: 18px;
+}
+
+li {
+padding-left: 5px;
+}
+
+/* header */
+
+header {
+margin-top: 20px;
+padding: 30px 0 0 0;
+}
+
+header img {
+clear: both;
+border-top: 4px solid #333;
+display: block;
+}
+
+header>h1 {
+float: left;
+margin: 0 0 18px 0;
+width: 600px;
+font-size: 30px;
+line-height: 36px;
+}
+
+header>h1 a {
+color: #9F3B19;
+font-weight: bold;
+text-decoration: none;
+text-shadow: 0px 3px 3px #949494;
+}
+
+header>h2 {
+color: #777;
+clear: right;
+float: right;
+font-style: italic;
+font-size: 16px;
+margin: 14px 0 18px 0;
+text-shadow: 0px 2px 3px #ddd;
+}
+
+/* nav */
+
+nav {
+background: #333;
+margin: 0 auto;
+width: 1050px;
+display: block;
+float: left;
+}
+
+nav .menu {
+font-size: 16px;
+font-weight: bold;
+margin-left: 12px;
+}
+
+nav .menu ul {
+list-style: none;
+margin: 0;
+}
+
+nav .menu li {
+float: left;
+position: relative;
+}
+
+nav .menu a {
+display: block;
+text-decoration: none;
+color: #FFF;
+padding: 0 20px;
+line-height: 38px;
+}
+
+nav .menu a:hover {
+color: #edab57;
+}
+
+/* nav 1-level dropdowns */
+nav .menu li ul { 
+display: none; 
+}
+
+nav .menu ul li a {
+display: block;
+text-decoration: none;
+color: #edbd7f;
+background: #333;
+margin-left: 1px;
+white-space: nowrap;
+}
+
+nav .menu ul li a:hover { 
+background: #333; 
+}
+
+nav .menu li:hover ul {
+display: block;
+position: absolute;
+}
+
+nav .menu li:hover li {
+float: none;
+font-size: 11px;
+}
+nav .menu li:hover a { 
+background: #333; 
+}
+
+nav .menu li:hover li a:hover { 
+background: #333; 
+}
+
+
+
+
+
+

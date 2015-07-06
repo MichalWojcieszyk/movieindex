@@ -1,0 +1,41 @@
+<h1>Contact Us</h1>
+
+Your name is: <%= @name %><br/>
+Your email is: <%= @email %><br/>
+
+<% if flash['error'] %>
+	<div class='error'><%= flash['error'] %></div>
+<% end %>
+
+
+<% if !@submitted || @form_error %>
+
+<%= @error_msg %><br/>
+<%= form_for contact_us_path, :method => "POST" do %>
+	<%= label_tag :name, "Enter your full name: " %>
+	<%= text_field_tag :name, @name, :autofocus => "autofocus", :placeholder => "Enter your name" %><br/> <!-- :required => true, --> 
+
+	<%= label_tag :email, "Enter your email: " %>
+	<%= email_field_tag :email, @email, :value => current_user.email %><br/>
+
+	<%= label_tag :question, "Enter your question: " %></br>
+	<%= text_area_tag :question, @question, :size => "50x10", :placeholder => "type your question here" %><br/>
+	<%= check_box_tag :newsletter, "newsletter", @newsletter %>
+	Subscribe to my newsletter?<br/>
+
+	<%= radio_button_tag :gender, "male", @male %> Male <br/>
+	<%= radio_button_tag :gender, "female", @female %> Female <br/>
+
+	<%= select_tag :product, options_for_select([['Movies', 0],['Directors', 1], ['Format', 2]], @product) %><br/>
+
+	<%= submit_tag "Ask question" %>
+<% end %>
+
+<% else %>
+	Thanks for your information.
+<% end %>
+
+
+
+
+

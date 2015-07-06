@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Newblog</title>
+  <%= stylesheet_link_tag    'application', media: 'screen', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'print', media: 'print', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="styles.css" type="text/css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="print.css" media="print" /> -->
+  <%= csrf_meta_tags %>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+
+	<header>
+		<h1>Movies Index</h1>
+		<br><br><br>
+		<% if user_signed_in? %>
+		  <h2>Welcome <%= current_user.email %>, you can find here best movies from all around the world.<br/>
+	    <% else %>
+		  <h2>You can find here best movies from all around the world.</h2>
+		<% end %>
+		<br>
+		<%= image_tag "pulpfiction.jpg", :size => "1000x500", :alt => "Travolta and Jackson" %>
+
+	</header>
+	
+
+
+	<%= render :partial => 'shared/nav' %>
+	<br>
+
+
+	
+
+<%= yield %>
+
+
+	
+
+</div>
+</div>
+
+</body>
+</html>

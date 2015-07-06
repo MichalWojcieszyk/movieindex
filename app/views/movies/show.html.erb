@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<% if comment_count %>
+<p> No comments for that movie </p>
+<% else %>
+<p> Average Rating: <%=@movie.comments.average(:rating) %>
+<% end %>
+<p>  
+<strong>Name:</strong>
+  <%= @movie.name.capitalize %>
+</p>
+
+<p>
+  <strong>Director:</strong>
+  <%= @movie.director %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @movie.description.html_safe %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @movie.year %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @movie.length %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @movie.format %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @movie.image %>
+</p>
+<p>
+  <strong>Thumbnail:</strong>
+  <%= image_tag @movie.image %>
+</p>
+
+
+<h2>Comments</h2>
+<% @movie.comments.descending.each do |comment|  %>
+  <h3><strong>Title: </strong><%= comment.title %></h3>
+  <h4><%= time_ago_in_words(comment.created_at) %> ago, <%= comment.author %> said: </h3>
+  <p><blockquote><%= comment.content.html_safe %></blockquote></p>
+  <p>Rating: <%= comment.rating %></p>
+  <% if is_admin? %>
+    <%= link_to "Delete comment", movie_comment_path(@movie, comment), class: 'btn btn-danger btn-sm', 
+                data: { confirm: 'Are you sure?' },
+                :method => :delete %>
+  <% end %>
+  <hr>
+<% end %>
+
+<%= render :partial => 'comment_form' %>
+<br>
+<%= link_to 'Email this movie', mail_movie_path(@movie), class: 'btn btn-primary' %> |
+<%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-info' %> |
+<%= link_to 'Back', movies_path, class: 'btn btn-warning' %>
