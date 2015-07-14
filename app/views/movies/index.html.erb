@@ -32,7 +32,7 @@
       <tr>
         <td><%= movie.name.capitalize %></td>
         <td><%= movie.director %></td>
-        <td><%= truncate(movie.description.html_safe, :length => 20) %></td>
+        <td><%= raw truncate(movie.description, :length => 20) %></td>
         <td><%= movie.year %></td>
         <td><%= movie.length %></td>
         <td><%= movie.format %></td>

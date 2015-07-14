@@ -2,8 +2,6 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy, :mail, :spam]
   before_filter :authenticate
 
-
-
   def mail
     UserMailer.newsletter(@movie, current_user).deliver
     redirect_to @movie, notice: 'Email was succesfully sent.'
@@ -23,20 +21,16 @@ class MoviesController < ApplicationController
    @movies = Movie.page(params['page']).order(:updated_at =>  :desc)
   end
 
- 
   def show
     @comment = Comment.new
   end
 
- 
   def new
     @movie = Movie.new
   end
 
-
   def edit
   end
-
 
   def create
     @movie = Movie.new(movie_params)
@@ -51,7 +45,6 @@ class MoviesController < ApplicationController
       end
     end
   end
-
 
   def update
     respond_to do |format|

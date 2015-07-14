@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
+  #get 'contacts/index'
+
+  #get 'contacts/new'
+  resources :contacts, only: [:new, :create, :index]
   get 'user/show'
 
  
   get 'movies/:id/mail' => 'movies#mail', :as => 'mail_movie'
   get 'movies/:id/spam' => 'movies#spam', :as => 'spam_movie'
-  get 'rental/index'
 
   devise_for :users
 
@@ -19,7 +22,7 @@ Rails.application.routes.draw do
    # delete 'movie/:id/comments/:comment_id',
    # :controller => :comments, :action => :destroy, :as => "destroy_comment"
   end
-  match 'contact_us' => 'page#contact_us', :via => [:post, :get]
+  #match 'contacts/create' => 'contacts#create', :via => [:post, :get]
  
 
   # The priority is based upon order of creation: first created -> highest priority.

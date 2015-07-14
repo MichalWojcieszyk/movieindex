@@ -18,8 +18,6 @@ class CommentsController < ApplicationController
     end 
   end
 
-
-
   def destroy
     @comment.destroy
    respond_to do |format|

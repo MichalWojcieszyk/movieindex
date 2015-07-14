@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605133906) do
+ActiveRecord::Schema.define(version: 20150714210907) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -23,7 +26,16 @@ ActiveRecord::Schema.define(version: 20150605133906) do
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id"
+  add_index "comments", ["movie_id"], name: "index_comments_on_movie_id", using: :btree
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "question"
+    t.boolean  "newsletter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "name"
@@ -36,27 +48,6 @@ ActiveRecord::Schema.define(version: 20150605133906) do
     t.datetime "updated_at"
     t.string   "image"
     t.string   "thumbnail"
-  end
-
-  create_table "people", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "age"
-    t.string   "hair_color"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.text     "description"
-    t.decimal  "cost"
-    t.integer  "qty"
-    t.string   "image"
-    t.decimal  "weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -77,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150605133906) do
     t.string   "last_name"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

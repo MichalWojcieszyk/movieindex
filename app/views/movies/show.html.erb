@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<% if comment_count %>
+<% if @movie.comments.count == 0 %>
 <p> No comments for that movie </p>
 <% else %>
-<p> Average Rating: <%=@movie.comments.average(:rating) %>
+<p> Average Rating: <%=@movie.comments.average(:rating).round(2) %>
 <% end %>
 <p>  
 <strong>Name:</strong>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @movie.description.html_safe %>
+  <%= raw @movie.description %>
 </p>
 
 <p>
@@ -37,7 +37,7 @@
 
 <p>
   <strong>Image:</strong>
-  <%= image_tag @movie.image %>
+  <%= image_tag @movie.image, :alt => "" %>
 </p>
 <p>
   <strong>Thumbnail:</strong>
@@ -49,7 +49,7 @@
 <% @movie.comments.descending.each do |comment|  %>
   <h3><strong>Title: </strong><%= comment.title %></h3>
   <h4><%= time_ago_in_words(comment.created_at) %> ago, <%= comment.author %> said: </h3>
-  <p><blockquote><%= comment.content.html_safe %></blockquote></p>
+  <p><blockquote><%= raw comment.content %></blockquote></p>
   <p>Rating: <%= comment.rating %></p>
   <% if is_admin? %>
     <%= link_to "Delete comment", movie_comment_path(@movie, comment), class: 'btn btn-danger btn-sm', 
@@ -60,7 +60,7 @@
 <% end %>
 
 <%= render :partial => 'comment_form' %>
-<br>
+</br>
 <%= link_to 'Email this movie', mail_movie_path(@movie), class: 'btn btn-primary' %> |
 <%= link_to 'Edit', edit_movie_path(@movie), class: 'btn btn-info' %> |
 <%= link_to 'Back', movies_path, class: 'btn btn-warning' %>

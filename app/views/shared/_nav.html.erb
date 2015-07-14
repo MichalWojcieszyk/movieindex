@@ -1,8 +1,13 @@
 <nav>
 		<div class="menu">
 			<ul>
-				<li><%= nav_link_to "Home", "home", movies_path, "current_page" %></li>
-				<li><%= nav_link_to "Contact us", "contact_us", contact_us_path, "current_page" %></li>
+				<li><%= link_to "Home", movies_path %></li>
+				<li><%= link_to "Contact us", new_contact_path %></li>
+				<% if current_user.try(:admin?) %>
+				  <li><%= link_to "List of questions", contacts_path %></li>
+				<% else %>
+
+				<% end %>
 				<li><%= link_to "Movies", movies_path %>
 				</li>	
 				<% if user_signed_in? %>
